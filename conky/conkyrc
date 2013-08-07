@@ -1,0 +1,121 @@
+# PRHONE Inc. - Romel Perez 2013 #
+# Central Desktop Conky settings #
+
+# — Main specifications — #
+background yes
+
+update_interval 1
+total_run_times 0
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+imlib_cache_size 0
+
+temperature_unit celcius
+
+
+# — Window specifications — #
+own_window yes
+own_window_transparent yes
+own_window_type override
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager
+
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 1000 500
+maximum_width 1000
+
+alignment top_right
+
+gap_x 10
+gap_y 10
+
+
+# — Graphics settings — #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+
+# — Text settings — #
+use_xft yes
+xftfont dungeon:size=8
+xftalpha 0.1
+
+default_color D9D4CC
+default_gauge_size 47 25
+
+uppercase no
+use_spacer right
+
+
+# - Load Lua Scripts - #
+lua_load ~/.conky/central/scripts.lua
+
+
+## - SYSTEM - ##
+TEXT
+${image ~/.conky/central/image.png -p 0,0 -s 1000x580}
+
+# --- Time --- #
+${voffset 90}${goto 96}${color 46ADE8}${font dungeon:pixelsize=48}${time %A}${font}
+${voffset 4}${goto 96}${font dungeon:pixelsize=30}${color FFFFFF}${time %d} ${color 46ADE8}${time  %B} ${time %Y}${font}
+${voffset -86}${goto 430}${font dungeon:pixelsize=90}${time %H:%M}${font}
+
+
+# --- System performance --- #
+# RAM and SWAP
+${goto 100}${voffset -11}${font StyleBats:size=14}${color 7B9494}i${color}${font}   ${voffset -5}${font dungeon:pixelsize=10}RAM: $memperc%${font}       ${goto 230}${voffset -5}${color 46A2E5}${membar 14,100}${color}
+${goto 100}${font StyleBats:size=14}${color 7B9494}j${color}${font}   ${voffset -5}${font dungeon:pixelsize=10}SWAP: $swapperc%${font}     ${goto 230}${voffset -5}${color 46A2E5}${swapbar 14,100}${color}
+
+# mem procces
+${goto 100}${voffset -12}${font StyleBats:size=10}${color 7B9494}h${color}${font}   ${voffset -2}${font dungeon:pixelsize=10}${top_mem name 1} ${goto 230}${top_mem mem 1}%${font}
+${goto 100}${font StyleBats:size=10}${color 7B9494}h${color}${font}   ${voffset -2}${font dungeon:pixelsize=10}${top_mem name 2} ${goto 230}${top_mem mem 2}%${font}
+${goto 100}${font StyleBats:size=10}${color 7B9494}h${color}${font}   ${voffset -2}${font dungeon:pixelsize=10}${top_mem name 3} ${goto 230}${top_mem mem 3}%${font}
+
+# CPU
+${goto 100}${voffset -5}${font StyleBats:size=14}${color 7B9494}A${color}${font}   ${voffset -5}${font dungeon:pixelsize=10}CPU1: ${cpu cpu1}%${font}   ${goto 230}${voffset -5}${color 46A2E5}${cpubar cpu1 14,100}${color}
+${goto 100}${font StyleBats:size=14}${color 7B9494}A${color}${font}   ${voffset -5}${font dungeon:pixelsize=10}CPU2: ${cpu cpu2}%${font}   ${goto 230}${voffset -5}${color 46A2E5}${cpubar cpu2 14,100}${color}
+
+# cpu procces
+${goto 100}${voffset -12}${font StyleBats:size=10}${color 7B9494}l${color}${font}   ${voffset -2}${font dungeon:pixelsize=10}${top name 1} ${goto 230}${top cpu 1}%${font}
+${goto 100}${font StyleBats:size=10}${color 7B9494}l${color}${font}   ${voffset -2}${font dungeon:pixelsize=10}${top name 2} ${goto 230}${top cpu 2}%${font}
+${goto 100}${font StyleBats:size=10}${color 7B9494}l${color}${font}   ${voffset -2}${font dungeon:pixelsize=10}${top name 3} ${goto 230}${top cpu 3}%${font}
+
+# cpu graph
+${goto 100}${voffset -1}${cpugraph 49,231 46A2E5 46A2E5}
+${goto 106}${voffset -24}${threads} process
+
+
+# --- Network --- #
+${goto 362}${voffset -122}${color 4682B4}NETWORK TRAFFIC UP:  ${goto 590}UPLOAD: ${totalup eth1}  ${goto 730}UP: ${upspeed eth1}
+${goto 355}${voffset 1}${color 4682B4}${upspeedgraph eth1 30,364}
+${goto 362}${voffset -6}${color 4682B4}NETWORK TRAFFIC DOWN:  ${goto 590}DOWNLOAD: ${totaldown eth1}  ${goto 730}${color 4682B4}DOWN: ${downspeed eth1}
+${goto 355}${voffset 1}${color 4682B4}${downspeedgraph eth1 30,364}
+
+
+# --- Devices --- #
+# Temperatures and Root Disk
+${voffset -229}${goto 440}${color 4682B4}${lua string_core}°C
+${voffset 1}${goto 450}${color 4682B4}${lua string_video}°C${goto 520}${color 4682B4}CAP: ${fs_size}
+${voffset 1}${goto 512}${color 4682B4}${goto 520}${color 4682B4}USED: ${fs_used}
+${voffset 1}${goto 512}${color 4682B4}${goto 520}${color 4682B4}FREE: ${fs_free}
+
+# Hard disks spaces
+${voffset -109}${goto 365}${color 4682B4}ROOT:   ${goto 410}${fs_bar 11,186 /}
+${voffset 2}${goto 365}${color 4682B4}HOME:      ${goto 410}${fs_bar 11,186 /home}
+
+
+# --- Battery and Uptime --- #
+${goto 750}${voffset -132}${color 4682B4}${battery_bar 20,112 BAT1}${color}
+${goto 758}${voffset -24}${color FFFFFF}BATTERY: ${battery_percent BAT1}%${color}
+${goto 758}${voffset 10}${color FFFFFF}${uptime}
+
+
