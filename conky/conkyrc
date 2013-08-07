@@ -57,12 +57,12 @@ use_spacer right
 
 
 # - Load Lua Scripts - #
-lua_load ~/.conky/central/scripts.lua
+lua_load ~/.conky/scripts.lua
 
 
 ## - SYSTEM - ##
 TEXT
-${image ~/.conky/central/image.png -p 0,0 -s 1000x580}
+${image ~/.conky/image.png -p 0,0 -s 1000x580}
 
 # --- Time --- #
 ${voffset 90}${goto 96}${color 46ADE8}${font dungeon:pixelsize=48}${time %A}${font}
