@@ -1,7 +1,9 @@
 Conky Command Desktop v0.2
 ==========================
 
-A Conky Command Center for netbook desktop. It has science fiction design for black desktop environments. It should be used in netbooks or displays of 1024x600 pixels.
+A conky command center for netbook desktop. It has science fiction design for black desktop environments. It should be used in netbooks or displays of 1024x600 pixels.
+
+![Screenshoot](https://github.com/prhonedev/conky-command/blob/master/screenshot/screenshot.png?raw=true)
 
 First, install conky or any conky manager. After, you will need to install the fonts in the "fonts folder" and change the wallpaper. To use the temperature sensors, you need to install "lm-sensors" typing the next:
 
